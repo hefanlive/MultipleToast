@@ -93,13 +93,13 @@ public class ToastBar {
             return this;
         }
 
-        public Builder setToastStyle1() {
+        public Builder setToastDefaultStyle() {
             params.backgroundColor = R.color.white;
             params.layoutHeight = getStatusBarHeight(context) + ScreenUtils.Dp2Px(context, 50);
             return this;
         }
 
-        public Builder setToastStyle2() {
+        public Builder setToastLiveStyle() {
             params.backgroundColor = R.color.yellow;
             params.layoutHeight = ScreenUtils.Dp2Px(context, 25);
             return this;
