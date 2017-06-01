@@ -7,5 +7,5 @@ allprojects {
 	}
   
   dependencies {
-	        compile 'com.github.hefanlive:MultipleToast:v1.0.0'
+	        compile 'com.github.hefanlive:MultipleToast:v1.0.1'
 	}
