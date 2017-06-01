@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 自定义Toast  -->
+    <declare-styleable name="Cookie">
+        <!--TextColor-->
+        <attr name="cookieTitleColor" format="color"/>
+        <attr name="cookieMessageColor" format="color"/>
+        <attr name="cookieActionColor" format="color"/>
+        <attr name="cookieBackgroundColor" format="color"/>
+        <!--TextSize-->
+        <attr name="titleTextSize" format="dimension"/>
+        <attr name="messageTextSize" format="dimension"/>
+        <attr name="actionTextSize" format="dimension"/>
+    </declare-styleable>
+</resources>
