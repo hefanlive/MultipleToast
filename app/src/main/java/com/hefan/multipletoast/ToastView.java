@@ -13,6 +13,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 /**
@@ -22,7 +23,7 @@ public class ToastView extends LinearLayout {
     private Animation slideInAnimation;
     private Animation slideOutAnimation;
 
-    private LinearLayout layoutRoot;
+    private RelativeLayout layoutRoot;
     private TextView tvMessage;
     private ImageView ivIcon;
     private long duration;
@@ -49,7 +50,7 @@ public class ToastView extends LinearLayout {
     private void initViews(Context context) {
         inflate(getContext(), R.layout.toast_layout, this);
 
-        layoutRoot = (LinearLayout) findViewById(R.id.ll_toast_root);
+        layoutRoot = (RelativeLayout) findViewById(R.id.ll_toast_root);
         tvMessage = (TextView) findViewById(R.id.tv_unified_toast);
         ivIcon = (ImageView) findViewById(R.id.iv_unified_toast);
         initDefaultStyle(context);
@@ -120,6 +121,7 @@ public class ToastView extends LinearLayout {
     private void createInAnim() {
         slideInAnimation = AnimationUtils.loadAnimation(getContext(),
                 layoutGravity == Gravity.BOTTOM ? R.anim.slide_in_from_bottom : R.anim.slide_in_from_top);
+
         slideInAnimation.setAnimationListener(new Animation.AnimationListener() {
             @Override
             public void onAnimationStart(Animation animation) {
