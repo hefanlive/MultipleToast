@@ -7,6 +7,7 @@ import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.Gravity;
+import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
 import android.view.animation.Animation;
@@ -23,7 +24,9 @@ public class ToastView extends LinearLayout {
     private Animation slideInAnimation;
     private Animation slideOutAnimation;
 
-    private RelativeLayout layoutRoot;
+    private LinearLayout layoutRoot;
+    private LinearLayout layoutToast;
+    private LinearLayout statusView;
     private TextView tvMessage;
     private ImageView ivIcon;
     private long duration;
@@ -50,7 +53,9 @@ public class ToastView extends LinearLayout {
     private void initViews(Context context) {
         inflate(getContext(), R.layout.toast_layout, this);
 
-        layoutRoot = (RelativeLayout) findViewById(R.id.ll_toast_root);
+        layoutRoot = (LinearLayout) findViewById(R.id.ll_root);
+        layoutToast = (LinearLayout) findViewById(R.id.ll_toast);
+        statusView = (LinearLayout) findViewById(R.id.status_view);
         tvMessage = (TextView) findViewById(R.id.tv_unified_toast);
         ivIcon = (ImageView) findViewById(R.id.iv_unified_toast);
         initDefaultStyle(context);
@@ -97,12 +102,17 @@ public class ToastView extends LinearLayout {
                 layoutRoot.setPadding(padding, padding, padding, padding);
             }
 
-            if (params.layoutHeight != 0) {
-                ViewGroup.LayoutParams lp = layoutRoot.getLayoutParams();
-                lp.height = params.layoutHeight;
-                layoutRoot.setLayoutParams(lp);
+            ViewGroup.LayoutParams lt = layoutToast.getLayoutParams();
+            lt.height = params.toastHeight;
+            layoutToast.setLayoutParams(lt);
 
-            }
+            ViewGroup.LayoutParams sv = statusView.getLayoutParams();
+            sv.height = params.statusHeight + params.toastHeight;
+            statusView.setLayoutParams(sv);
+
+//            ViewGroup.LayoutParams lr = layoutRoot.getLayoutParams();
+//            lr.height = params.statusHeight + params.toastHeight;
+//            layoutRoot.setLayoutParams(lr);
 
             createInAnim();
             createOutAnim();

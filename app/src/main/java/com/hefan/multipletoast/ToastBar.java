@@ -84,7 +84,7 @@ public class ToastBar {
         }
 
         public Builder setToastHeight(@ColorRes int toastHeight) {
-            params.layoutHeight = toastHeight;
+            params.toastHeight = toastHeight;
             return this;
         }
 
@@ -95,13 +95,15 @@ public class ToastBar {
 
         public Builder setToastDefaultStyle() {
             params.backgroundColor = R.color.white;
-            params.layoutHeight = getStatusBarHeight(context) + ScreenUtils.Dp2Px(context, 50);
+            params.toastHeight = ScreenUtils.Dp2Px(context, 50);
+            params.statusHeight = getStatusBarHeight(context);
             return this;
         }
 
         public Builder setToastLiveStyle() {
             params.backgroundColor = R.color.yellow;
-            params.layoutHeight = ScreenUtils.Dp2Px(context, 25);
+            params.toastHeight = ScreenUtils.Dp2Px(context, 25);
+            params.statusHeight = getStatusBarHeight(context);
             return this;
         }
 
@@ -130,7 +132,10 @@ public class ToastBar {
 
         public int layoutGravity = Gravity.TOP;
 
-        public int layoutHeight;
+        public int toastHeight;
+
+        public int statusHeight;
+
     }
 
     public static int getStatusBarHeight(Activity context) {

@@ -1,17 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/ll_toast_root"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_root"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/default_50dp_hf"
-    android:background="@color/yellow">
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="@dimen/default_12dp_hf"
-        android:layout_centerHorizontal="true" >
+        android:id="@+id/status_view"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/default_0dp_hf"
+        android:orientation="vertical"/>
+
+    <LinearLayout
+        android:id="@+id/ll_toast"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/default_50dp_hf"
+        android:gravity="center"
+        android:background="@color/yellow">
 
         <ImageView
             android:id="@+id/iv_unified_toast"
@@ -24,8 +30,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/default_4dp_hf"
-            android:text=""
+            android:text="frfgsdfsdggb"
             android:textColor="@color/black64"
             android:textSize="@dimen/default_16sp_hf" />
     </LinearLayout>
-</RelativeLayout>
+
+</LinearLayout>
