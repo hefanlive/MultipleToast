@@ -87,7 +87,8 @@ public class ToastView extends LinearLayout {
                 tvMessage.setVisibility(VISIBLE);
                 tvMessage.setText(params.message);
                 if (params.messageColor != 0) {
-                    tvMessage.setTextColor(ContextCompat.getColor(getContext(), params.messageColor));
+//                    tvMessage.setTextColor(ContextCompat.getColor(getContext(), params.messageColor));
+                    tvMessage.setTextColor(params.messageColor);
                 }
                 if (params.messageSize != 0) {
                     tvMessage.setTextSize(params.messageSize);
