@@ -89,6 +89,9 @@ public class ToastView extends LinearLayout {
                 if (params.messageColor != 0) {
                     tvMessage.setTextColor(ContextCompat.getColor(getContext(), params.messageColor));
                 }
+                if (params.messageSize != 0) {
+                    tvMessage.setTextSize(params.messageSize);
+                }
             }
 
             int padding = getContext().getResources().getDimensionPixelSize(R.dimen.default_16dp_hf);
@@ -114,7 +117,7 @@ public class ToastView extends LinearLayout {
                         .setBackgroundColor(ContextCompat.getColor(getContext(), params.backgroundColor));
             }
 
-            
+
             createInAnim();
             createOutAnim();
         }

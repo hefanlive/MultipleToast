@@ -78,6 +78,11 @@ public class ToastBar {
             return this;
         }
 
+        public Builder setMessageSize(int messageSize) {
+            params.messageSize = messageSize;
+            return this;
+        }
+
         public Builder setBackgroundColor(@ColorRes int backgroundColor) {
             params.backgroundColor = backgroundColor;
             return this;
@@ -104,6 +109,8 @@ public class ToastBar {
             params.backgroundColor = R.color.yellow;
             params.toastHeight = ScreenUtils.Dp2Px(context, 25);
             params.statusHeight = getStatusBarHeight(context);
+            params.messageColor = context.getResources().getColor(R.color.black);
+            params.messageSize = 13;
             return this;
         }
 
@@ -127,6 +134,8 @@ public class ToastBar {
         public int backgroundColor;
 
         public int messageColor;
+
+        public int messageSize;
 
         public long duration = 1200;
 
