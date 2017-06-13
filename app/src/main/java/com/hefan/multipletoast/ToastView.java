@@ -91,12 +91,6 @@ public class ToastView extends LinearLayout {
                 }
             }
 
-            //Background
-            if (params.backgroundColor != 0) {
-                layoutRoot
-                        .setBackgroundColor(ContextCompat.getColor(getContext(), params.backgroundColor));
-            }
-
             int padding = getContext().getResources().getDimensionPixelSize(R.dimen.default_16dp_hf);
             if (layoutGravity == Gravity.BOTTOM) {
                 layoutRoot.setPadding(padding, padding, padding, padding);
@@ -107,13 +101,20 @@ public class ToastView extends LinearLayout {
             layoutToast.setLayoutParams(lt);
 
             ViewGroup.LayoutParams sv = statusView.getLayoutParams();
-            sv.height = params.statusHeight + params.toastHeight;
+            sv.height = params.statusHeight;
             statusView.setLayoutParams(sv);
 
 //            ViewGroup.LayoutParams lr = layoutRoot.getLayoutParams();
 //            lr.height = params.statusHeight + params.toastHeight;
 //            layoutRoot.setLayoutParams(lr);
 
+            //Background
+            if (params.backgroundColor != 0) {
+                layoutRoot
+                        .setBackgroundColor(ContextCompat.getColor(getContext(), params.backgroundColor));
+            }
+
+            
             createInAnim();
             createOutAnim();
         }
