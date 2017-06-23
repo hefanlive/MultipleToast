@@ -3,6 +3,7 @@ package com.hefan.multipletoast;
 import android.app.Activity;
 import android.support.annotation.ColorRes;
 import android.support.annotation.DrawableRes;
+import android.support.annotation.NonNull;
 import android.support.annotation.StringRes;
 import android.view.Gravity;
 import android.view.ViewGroup;
@@ -13,22 +14,24 @@ import android.view.ViewGroup;
  */
 public class ToastBar {
     private static final String TAG = "ToastBar";
+    public static final int DEFAULT_STYLE = 1;
+    public static final int LIVE_STYLE = 2;
 
     private ToastView toastView;
-    private Activity context;
+    private Activity mActivity;
 
     private ToastBar() {
     }
 
     private ToastBar(Activity context, Params params) {
-        this.context = context;
+        this.mActivity = context;
         toastView = new ToastView(context);
-        toastView.setParams(params);
+        toastView.setParams(context,params);
     }
 
     public void show() {
-        if (toastView != null) {
-            final ViewGroup decorView = (ViewGroup) context.getWindow().getDecorView();
+        if (toastView != null && mActivity != null) {
+            final ViewGroup decorView = (ViewGroup) mActivity.getWindow().getDecorView();
             final ViewGroup content = (ViewGroup) decorView.findViewById(android.R.id.content);
             if (toastView.getParent() == null) {
                 if (toastView.getLayoutGravity() == Gravity.BOTTOM) {
@@ -44,13 +47,13 @@ public class ToastBar {
 
         private Params params = new Params();
 
-        public Activity context;
+        public Activity mActivity;
 
         /**
          * Create a builder for an ToastBar.
          */
-        public Builder(Activity activity) {
-            this.context = activity;
+        public Builder(@NonNull Activity activity) {
+            this.mActivity = activity;
         }
 
         public Builder setIcon(@DrawableRes int iconResId) {
@@ -64,7 +67,9 @@ public class ToastBar {
         }
 
         public Builder setMessage(@StringRes int resId) {
-            params.message = context.getString(resId);
+            if(mActivity != null) {
+                params.message = mActivity.getString(resId);
+            }
             return this;
         }
 
@@ -99,27 +104,26 @@ public class ToastBar {
         }
 
         public Builder setToastDefaultStyle() {
-            params.backgroundColor = R.color.white;
-            params.toastHeight = ScreenUtils.Dp2Px(context, 50);
-            params.statusHeight = getStatusBarHeight(context);
+            params.toastStyle = DEFAULT_STYLE;
+
             return this;
         }
 
         public Builder setToastLiveStyle() {
-            params.backgroundColor = R.color.yellow;
-            params.toastHeight = ScreenUtils.Dp2Px(context, 25);
-            params.statusHeight = getStatusBarHeight(context);
-            params.messageColor = context.getResources().getColor(R.color.black);
-            params.messageSize = 13;
+            params.toastStyle = LIVE_STYLE;
+
             return this;
         }
 
         public ToastBar create() {
-            ToastBar toastBar = new ToastBar(context, params);
+            ToastBar toastBar = new ToastBar(mActivity, params);
             return toastBar;
         }
 
         public ToastBar show() {
+            if(mActivity == null){
+                return null;
+            }
             final ToastBar toastBar = create();
             toastBar.show();
             return toastBar;
@@ -145,14 +149,8 @@ public class ToastBar {
 
         public int statusHeight;
 
+        public int toastStyle;
     }
 
-    public static int getStatusBarHeight(Activity context) {
-        int result = 0;
-        int resourceId = context.getResources().getIdentifier("status_bar_height", "dimen", "android");
-        if (resourceId > 0) {
-            result = context.getResources().getDimensionPixelSize(resourceId);
-        }
-        return result;
-    }
+
 }

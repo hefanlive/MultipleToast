@@ -1,5 +1,6 @@
 package com.hefan.multipletoast;
 
+import android.app.Activity;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -71,10 +72,26 @@ public class ToastView extends LinearLayout {
         layoutRoot.setBackgroundColor(backgroundColor);
     }
 
-    public void setParams(final ToastBar.Params params) {
-        if (params != null) {
+    public void setParams(Activity activity,final ToastBar.Params params) {
+        if (params != null && activity != null) {
             duration = params.duration;
             layoutGravity = params.layoutGravity;
+
+            if(params.toastStyle == ToastBar.DEFAULT_STYLE){
+                //默认模式
+                params.backgroundColor = R.color.white;
+                params.toastHeight = ScreenUtils.Dp2Px(activity, 50);
+                params.statusHeight = getStatusBarHeight(activity);
+
+
+            }else if(params.toastStyle == ToastBar.LIVE_STYLE){
+                //直播间模式
+                params.backgroundColor = R.color.yellow;
+                params.toastHeight = ScreenUtils.Dp2Px(activity, 25);
+                params.statusHeight = getStatusBarHeight(activity);
+                params.messageColor = activity.getResources().getColor(R.color.black);
+                params.messageSize = 13;
+            }
 
             //Icon
             if (params.iconResId != 0) {
@@ -87,7 +104,6 @@ public class ToastView extends LinearLayout {
                 tvMessage.setVisibility(VISIBLE);
                 tvMessage.setText(params.message);
                 if (params.messageColor != 0) {
-//                    tvMessage.setTextColor(ContextCompat.getColor(getContext(), params.messageColor));
                     tvMessage.setTextColor(params.messageColor);
                 }
                 if (params.messageSize != 0) {
@@ -100,17 +116,15 @@ public class ToastView extends LinearLayout {
                 layoutRoot.setPadding(padding, padding, padding, padding);
             }
 
+            //Toast高度
             ViewGroup.LayoutParams lt = layoutToast.getLayoutParams();
             lt.height = params.toastHeight;
             layoutToast.setLayoutParams(lt);
 
+            //状态栏高度
             ViewGroup.LayoutParams sv = statusView.getLayoutParams();
             sv.height = params.statusHeight;
             statusView.setLayoutParams(sv);
-
-//            ViewGroup.LayoutParams lr = layoutRoot.getLayoutParams();
-//            lr.height = params.statusHeight + params.toastHeight;
-//            layoutRoot.setLayoutParams(lr);
 
             //Background
             if (params.backgroundColor != 0) {
@@ -212,6 +226,15 @@ public class ToastView extends LinearLayout {
                 }
             }
         }, 100);
+    }
+
+    public int getStatusBarHeight(Activity context) {
+        int result = 0;
+        int resourceId = context.getResources().getIdentifier("status_bar_height", "dimen", "android");
+        if (resourceId > 0) {
+            result = context.getResources().getDimensionPixelSize(resourceId);
+        }
+        return result;
     }
 
 }
