@@ -141,9 +141,9 @@ public class ToastView extends LinearLayout {
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
         if (layoutGravity == Gravity.TOP) {
-            super.onLayout(changed, l, 0, r, layoutRoot.getMeasuredHeight());
+            super.onLayout(changed, 100, 0, r, layoutRoot.getMeasuredHeight());
         } else {
-            super.onLayout(changed, l, t, r, b);
+            super.onLayout(changed, 100, t, r, b);
         }
     }
 
