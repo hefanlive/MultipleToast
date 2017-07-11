@@ -37,7 +37,8 @@ public class ToastBar {
                 if (toastView.getLayoutGravity() == Gravity.BOTTOM) {
                     content.addView(toastView);
                 } else {
-                    decorView.addView(toastView);
+//                    decorView.addView(toastView);
+                    content.addView(toastView);
                 }
             }
         }

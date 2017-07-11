@@ -81,14 +81,14 @@ public class ToastView extends LinearLayout {
                 //默认模式
                 params.backgroundColor = R.color.white;
                 params.toastHeight = ScreenUtils.Dp2Px(activity, 50);
-                params.statusHeight = getStatusBarHeight(activity);
+//                params.statusHeight = getStatusBarHeight(activity);
 
 
             }else if(params.toastStyle == ToastBar.LIVE_STYLE){
                 //直播间模式
                 params.backgroundColor = R.color.yellow;
                 params.toastHeight = ScreenUtils.Dp2Px(activity, 25);
-                params.statusHeight = getStatusBarHeight(activity);
+//                params.statusHeight = getStatusBarHeight(activity);
                 params.messageColor = activity.getResources().getColor(R.color.black);
                 params.messageSize = 13;
             }
@@ -141,9 +141,9 @@ public class ToastView extends LinearLayout {
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
         if (layoutGravity == Gravity.TOP) {
-            super.onLayout(changed, 100, 0, r, layoutRoot.getMeasuredHeight());
+            super.onLayout(changed, l, 0, r, layoutRoot.getMeasuredHeight());
         } else {
-            super.onLayout(changed, 100, t, r, b);
+            super.onLayout(changed, l, t, r, b);
         }
     }
 
