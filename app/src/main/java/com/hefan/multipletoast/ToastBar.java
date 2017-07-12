@@ -142,7 +142,7 @@ public class ToastBar {
 
         public int messageSize;
 
-        public long duration = 1200;
+        public long duration = 800;
 
         public int layoutGravity = Gravity.TOP;
 
