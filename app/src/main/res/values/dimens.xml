@@ -8,11 +8,13 @@
     <dimen name="default_12dp_hf">12dp</dimen>
     <dimen name="default_13dp_hf">13dp</dimen>
     <dimen name="default_14dp_hf">14dp</dimen>
+    <dimen name="default_15dp_hf">15dp</dimen>
     <dimen name="default_16dp_hf">16dp</dimen>
     <dimen name="default_25dp_hf">25dp</dimen>
     <dimen name="default_50dp_hf">50dp</dimen>
 
 
+    <dimen name="default_13sp_hf">13sp</dimen>
+    <dimen name="default_15sp_hf">15sp</dimen>
     <dimen name="default_16sp_hf">16sp</dimen>
-
 </resources>

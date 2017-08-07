@@ -134,7 +134,7 @@ public class ToastBar {
             if (mBuilder.windowAnimations > 0) {
                 params.windowAnimations = mBuilder.windowAnimations;
             } else {
-                params.windowAnimations = com.hefan.hftoast.R.style.anim_view;
+                params.windowAnimations = R.style.anim_view;
             }
 
             params.gravity = mBuilder.layoutGravity;
@@ -173,13 +173,13 @@ public class ToastBar {
 //                mTextView.setText(mBuilder.message);
 //                break;
             case LIVE_STYLE:
-                mToastRoot = LayoutInflater.from(mContext).inflate(com.hefan.hftoast.R.layout.toast_live_view, null);
-                mTextView = (TextView) mToastRoot.findViewById(com.hefan.hftoast.R.id.message);
+                mToastRoot = LayoutInflater.from(mContext).inflate(R.layout.toast_live_view, null);
+                mTextView = (TextView) mToastRoot.findViewById(R.id.message);
 
                 mTextView.setText(mBuilder.message);
                 break;
             case CUSTOM_STYLE:
-                mToastRoot = LayoutInflater.from(mContext).inflate(com.hefan.hftoast.R.layout.toast_live_view, null);
+                mToastRoot = LayoutInflater.from(mContext).inflate(R.layout.toast_live_view, null);
 //                mTextView = (TextView) mToastRoot.findViewById(com.hefan.hftoast.R.id.message);
 //
 //                mTextView.setText(mBuilder.message);
