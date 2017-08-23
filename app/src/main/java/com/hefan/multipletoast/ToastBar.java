@@ -329,7 +329,9 @@ public class ToastBar {
 //        }
 
         public void show() {
-            ToastBar.makeText(this).show();
+            if(mContext != null) {
+                ToastBar.makeText(this).show();
+            }
         }
     }
 
